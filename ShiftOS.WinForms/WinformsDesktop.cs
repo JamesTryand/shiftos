@@ -1081,8 +1081,11 @@ namespace ShiftOS.WinForms
             {
                 this.Invoke(new Action(() =>
                 {
-                    currentSettingsPane?.Hide();
-                    currentSettingsPane = null;
+                    if (currentSettingsPane != null)
+                    {
+                        currentSettingsPane?.Hide();
+                        currentSettingsPane = null;
+                    }
                     pnladvancedal.Hide();
                 }));
             }

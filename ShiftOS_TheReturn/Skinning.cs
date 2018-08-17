@@ -134,9 +134,11 @@ namespace ShiftOS.Engine
                         if (iattr.Name == img)
                         {
                             byte[] image = (byte[])field.GetValue(LoadedSkin);
-                            if (processor != null)
+                            if (processor != null && image != null)
+                            {
                                 image = processor.ProcessImage(image);
-                            return ImageFromBinary(image);
+                            }
+                            return image != null ? ImageFromBinary(image) : null;
                         }
                     }
                 }

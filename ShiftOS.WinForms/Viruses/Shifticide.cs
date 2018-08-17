@@ -16,7 +16,7 @@ namespace ShiftOS.WinForms.Viruses
         {
             _virusTimer.Stop();
             _virusTimer = null;
-            if (ShiftOS.Objects.ShiftFS.Utils.DirectoryExists("0:/home"))
+            if (!ShiftOS.Objects.ShiftFS.Utils.DirectoryExists("0:/home"))
                 ShiftOS.Objects.ShiftFS.Utils.CreateDirectory("0:/home");
             
         }

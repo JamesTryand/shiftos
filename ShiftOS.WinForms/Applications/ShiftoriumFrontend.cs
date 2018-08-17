@@ -104,12 +104,16 @@ namespace ShiftOS.WinForms.Applications
                 var t = new Thread((tupobj) =>
                 {
                     foreach (var upg in avail.Where(x => x.Category == it.catName))
+                    {
                         upl.Add(Localization.Parse(upg.Name) + " - " + upg.Cost.ToString() + "CP", upg);
+                    }                        
                     if (it.catId == CategoryId)
+                    {
                         this.Invoke(new Action(() =>
                         {
                             SetList();
                         }));
+                    }
                     numComplete++;
                 });
                 t.Start();
@@ -120,10 +124,14 @@ namespace ShiftOS.WinForms.Applications
         {
             lbupgrades.Items.Clear();
             if (upgrades.Length == 0)
+            { 
                 return;
+            }
             lbnoupgrades.Hide();
             if (CategoryId > upgrades.Length)
+            {
                 CategoryId = 0;
+            }
             try
             {
                 lbupgrades.Items.AddRange(upgrades[CategoryId].Keys.ToArray());
@@ -142,7 +150,9 @@ namespace ShiftOS.WinForms.Applications
                     );
             }
             else
+            {
                 lbnoupgrades.Hide();
+            }
             lblcategorytext.Text = cats[CategoryId];
         }
 
@@ -258,10 +268,10 @@ namespace ShiftOS.WinForms.Applications
 
         private void moveCat(short direction) // direction is -1 to move backwards or 1 to move forwards
         {
-            if (cats.Length == 0) return;
+            if (cats.Length == 0) { return; }
             CategoryId += direction;
             CategoryId %= cats.Length;
-            if (CategoryId < 0) CategoryId += cats.Length; // fix modulo on negatives
+            if (CategoryId < 0) { CategoryId += cats.Length; } // fix modulo on negatives
             SetList();
         }
 
